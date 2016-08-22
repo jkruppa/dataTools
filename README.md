@@ -1,6 +1,6 @@
 # dataTools
 
-Private collection of utilitiy and helper functions for my daily workflow. Some functions make less sense, if the given dir tree is not available. 
+Private collection of utilitiy and helper functions for my daily workflow. Some functions make less sense, if the demanded project structure is not available. 
 
 ## Installation
 
