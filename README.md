@@ -8,5 +8,5 @@ The development version from github:
 
 ```R
 # install.packages("devtools")
-devtools::install_github("jkruppa/kmerPyramid")
+devtools::install_github("jkruppa/dataTools")
 ```
