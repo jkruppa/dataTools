@@ -3,9 +3,17 @@ Title: A collection of hepful data wrapper
 Version: 1.0
 Authors@R: "Jochen Kruppa <jochen.kruppa@gmail.com> [aut,cre]"
 Description: Better functions for writing and getting objects and other data
-    stuff or rounding.
+    stuff. Loads all my desired packages. Used for my daily workflow.
 Depends:
     R (>= 3.2.1)
+Imports:
+    dplyr,
+    plyr,
+    openxlsx,
+    ggplot2,
+    grid,
+    gridExtra,
+    foreach
 License: "GPL-3"
 LazyData: true
 RoxygenNote: 5.0.1
