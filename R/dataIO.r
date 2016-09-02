@@ -21,7 +21,7 @@ write.table0 <- function(...){
 ##' @return NULL
 ##' @author Jochen Kruppa
 ##' @export
-writeRDS <- function(object, dir, verbose = TRUE){
+writeRDS <- function(object, dir, verbose = FALSE){
     objectName <- deparse(substitute(object))
     dirName <- deparse(substitute(dir))
     file <- file.path(dir, paste0(objectName, ".RDS"))
@@ -30,7 +30,7 @@ writeRDS <- function(object, dir, verbose = TRUE){
         cat("Write", objectName, "to", dirName, "\n")
         cat("'", filePath, "'... will be added to the init.R\n")
     }    
-    write_flag <- as.numeric(try(system(paste0("grep -c '", paste0(objectName, "File"), "' init.R"), intern  = TRUE)))
+    write_flag <- suppressWarnings(as.numeric(try(system(paste0("grep -c '", paste0(objectName, "File"), "' init.R"), intern  = TRUE))))
     if(write_flag)
         warning("File already exists in init.R. Overwrite.\n")
     else
