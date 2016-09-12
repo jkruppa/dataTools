@@ -4,7 +4,14 @@
 #' @docType package
 NULL
 
-
+##' Small wrapper for glimpse()
+##'
+##' Small wrapper for glimpse()
+##' @title Small wrapper for glimpse()
+##' @param ... 
+##' @return glimpse()
+##' @author Jochen Kruppa
+gli <- function(...) glimpse(...) 
     
 ##' A p value rounder
 ##'
