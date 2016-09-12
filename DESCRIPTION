@@ -12,7 +12,8 @@ Imports:
     ggplot2,
     grid,
     gridExtra,
-    foreach
+    foreach,
+    hashmap
 License: "GPL-3"
 LazyData: true
 RoxygenNote: 5.0.1
