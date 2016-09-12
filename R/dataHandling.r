@@ -11,6 +11,7 @@ NULL
 ##' @param ... 
 ##' @return glimpse()
 ##' @author Jochen Kruppa
+##' @export
 gli <- function(...) glimpse(...) 
     
 ##' A p value rounder
