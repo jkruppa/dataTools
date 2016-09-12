@@ -12,8 +12,11 @@ NULL
 ##' @return glimpse()
 ##' @author Jochen Kruppa
 ##' @export
-gli <- function(...) glimpse(...) 
-    
+gli <- function(...) {
+    require(dplyr)
+    glimpse(...) 
+}
+
 ##' A p value rounder
 ##'
 ##' A p value rounder
