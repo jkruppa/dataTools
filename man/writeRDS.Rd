@@ -4,7 +4,7 @@
 \alias{writeRDS}
 \title{SaveRDS wrapper}
 \usage{
-writeRDS(object, dir, verbose = TRUE)
+writeRDS(object, dir, verbose = FALSE)
 }
 \arguments{
 \item{object}{which should be saved}
