@@ -6,7 +6,10 @@
 ##' @return NULL
 ##' @author Jochen Kruppa
 ##' @export
-gli <- function(...) glimpse(...) 
+gli <- function(...) {
+  require(dplyr)
+  glimpse(...) 
+}
 
 ##' Load named fasta file
 ##'
@@ -42,8 +45,10 @@ TIME <- function(...) format(Sys.time(), "%b %d %X")
 ##' @return Message with time
 ##' @author Jochen Kruppa
 ##' @export
-talk <- function(...) message(str_c(TIME(), " ..... "), ...)
-
+talk <- function(...) {
+  require(stringr)
+  message(str_c(TIME(), " ..... "), ...)
+}
 
 ##' Lazy alias for dir() function
 ##'
