@@ -67,6 +67,7 @@ dir0 <- function(...) dir(..., full.names = TRUE, recursive = TRUE)
 ##' @param x  
 ##' @return Check for named vector
 ##' @author Jochen Kruppa
+##' @export
 is.named <- function(file){
     if(is.null(names(x))) {stop("Named 'x' is needed")}
 }
