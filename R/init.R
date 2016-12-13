@@ -23,6 +23,8 @@ init <- function(...) {
   talk("Register ", par$nCores, " CPU cores. Change with 'registerDoMC()'")  
   if(Sys.info()['sysname'] != "Windows")
     registerDoMC(par$nCores)
-  if(file.exists("init.R"))
+  if(file.exists("init.R")){
+    talk("Source file paths from 'init.R'")
     source("init.R")
+  }
 }
