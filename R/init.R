@@ -12,6 +12,9 @@ init <- function(...) {
                          "Windows" = {
                            grep("doMC|foreach", par$packages,
                                 invert = TRUE, value = TRUE)
+                         },
+                         "Linux" = {
+                           par$packages
                          })
   talk("Load demanded packages: ", paste0(par$packages, collapse = " "))
   p_load(char = par$packages, character.only = TRUE)
