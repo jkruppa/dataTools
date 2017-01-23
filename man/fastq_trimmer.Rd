@@ -5,7 +5,7 @@
 \title{Trimmomatic wrapper}
 \usage{
 fastq_trimmer(inFile, outFile, leading = 10, trailing = 10,
-  minlength = 50)
+  minlength = 50, illuminaclip = "TruSeq3")
 }
 \arguments{
 \item{inFile}{Fastq infile}
@@ -19,6 +19,9 @@ fastq_trimmer(inFile, outFile, leading = 10, trailing = 10,
 (below quality 10 [default])}
 
 \item{minlength}{Min read length to keep. 50 [default]}
+
+\item{illuminaclip}{Remove the adapter from illumina by TruSeq2
+or TruSeq3 protocol}
 }
 \description{
 Trimmomatic wrapper

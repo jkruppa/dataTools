@@ -5,7 +5,8 @@
 \title{Main fastq quality function}
 \usage{
 fastq_quality_control(inFile, outFile, tmpDir = tmpDir, p = 20, q = 50,
-  leading = 10, trailing = 10, minlength = 50)
+  leading = 10, trailing = 10, minlength = 50,
+  illumninaclip = "TruSeq3")
 }
 \arguments{
 \item{inFile}{Fastq infile}
@@ -26,6 +27,9 @@ removed automatically}
 (below quality 10 [default])}
 
 \item{minlength}{Min read length to keep. 50 [default]}
+
+\item{illumninaclip}{Remove the adapter from illumina by TruSeq2
+or TruSeq3 protocol}
 }
 \description{
 Main fastq quality function

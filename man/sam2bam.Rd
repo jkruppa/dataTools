@@ -4,7 +4,7 @@
 \alias{sam2bam}
 \title{Finds sam files and convert to bam}
 \usage{
-sam2bam(samDir, pattern)
+sam2bam(samDir, pattern, keep = TRUE)
 }
 \arguments{
 \item{samDir}{Dir where are 'pattern' sam's should be converted}

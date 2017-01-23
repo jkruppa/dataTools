@@ -7,7 +7,7 @@
 ##' @return NULL
 ##' @author Jochen Kruppa
 ##' @export
-sam2bam <- function(samDir, pattern){
+sam2bam <- function(samDir, pattern, keep = TRUE){
   talk("Start converting sam to bam with sorting the bam file...")
   sam2BamCMD <- str_c("find ", samDir, " | grep '", pattern,
                       "' | parallel '",
@@ -16,6 +16,10 @@ sam2bam <- function(samDir, pattern){
                       "samtools index {.}.bam' 2> /home/temp/temp.log" ## make index and be quiet!!!
                       )
   runCMD(sam2BamCMD)
+  if(!keep){
+    talk("Remove *all* sam files from samDir")
+    unlink(dir0(samDir, pattern = "*.sam$"))
+  }
   talk("Finished")
 }
 
@@ -52,13 +56,16 @@ fastq_quality_filter <- function(inFile, outFile, q = 20, p = 50){
 ##' @param trailing Numeric. Remove trailing low quality or N bases
 ##'   (below quality 10 [default])
 ##' @param minlength Min read length to keep. 50 [default]
+##' @param illuminaclip Remove the adapter from illumina by TruSeq2
+##'   or TruSeq3 protocol
 ##' @return NULL
 ##' @author Jochen Kruppa
 ##' @export
 fastq_trimmer <- function(inFile, outFile,
                           leading = 10,
                           trailing = 10,
-                          minlength = 50
+                          minlength = 50,
+                          illuminaclip = "TruSeq3"
                           ){
   if(length(inFile) == 2){
     ## check if both in and out files are named
@@ -76,6 +83,8 @@ fastq_trimmer <- function(inFile, outFile,
                                unpaired_outFile["R1"],
                                paired_outFile["R2"],
                                unpaired_outFile["R2"],
+                               str_c("ILLUMINACLIP:",
+                                     illuminaclip, "-PE.fa:2:30:10"),
                                str_c("LEADING:", leading),
                                str_c("TRAILING:", trailing),
                                str_c("MINLEN:", minlength),
@@ -86,7 +95,9 @@ fastq_trimmer <- function(inFile, outFile,
                                "-threads", par$nCores,
                                "-phred33",
                                inFile,
-                               outFile,                               
+                               outFile,
+                               str_c("ILLUMINACLIP:",
+                                     illuminaclip, "-PE.fa:2:30:10"),
                                str_c("LEADING:", leading),
                                str_c("TRAILING:", trailing),
                                str_c("MINLEN:", minlength),
@@ -111,6 +122,8 @@ fastq_trimmer <- function(inFile, outFile,
 ##' @param trailing Numeric. Remove trailing low quality or N bases
 ##'   (below quality 10 [default])
 ##' @param minlength Min read length to keep. 50 [default]
+##' @param illumninaclip Remove the adapter from illumina by TruSeq2
+##'   or TruSeq3 protocol
 ##' @return NULL
 ##' @author Jochen Kruppa
 ##' @export
@@ -120,7 +133,8 @@ fastq_quality_control <- function(inFile, outFile,
                                   q = 50,
                                   leading = 10,
                                   trailing = 10,
-                                  minlength = 50){
+                                  minlength = 50,
+                                  illumninaclip = "TruSeq3"){
   talk("Write all temporal files to /home/temp")
   tmpTrimFq <- file.path(tmpDir,
                          gsub("fastq|fq", "trimmed.fq", basename(inFile)))
@@ -128,7 +142,9 @@ fastq_quality_control <- function(inFile, outFile,
     names(tmpTrimFq) <- names(inFile)
   } 
   talk("Start trimming")
-  fastq_trimmer(inFile, tmpTrimFq, leading, trailing, minlength)
+  fastq_trimmer(inFile, tmpTrimFq,
+                leading, trailing,
+                minlength, illumninaclip)
   talk("Start quality clipping and read removing")
   if(length(inFile) == 2){
     pairedTrimFq <- gsub("fq", "paired.fq", tmpTrimFq)
