@@ -4,7 +4,7 @@
 \alias{fastq_quality_control}
 \title{Main fastq quality function}
 \usage{
-fastq_quality_control(inFile, outFile, tmpDir = tmpDir, p = 20, q = 50,
+fastq_quality_control(inFile, outFile, tmpDir, p = 20, q = 50,
   leading = 10, trailing = 10, minlength = 50,
   illumninaclip = "TruSeq3")
 }

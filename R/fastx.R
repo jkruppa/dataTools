@@ -127,8 +127,9 @@ fastq_trimmer <- function(inFile, outFile,
 ##' @return NULL
 ##' @author Jochen Kruppa
 ##' @export
-fastq_quality_control <- function(inFile, outFile,
-                                  tmpDir = tmpDir,
+fastq_quality_control <- function(inFile,
+                                  outFile,
+                                  tmpDir,
                                   p = 20,
                                   q = 50,
                                   leading = 10,
