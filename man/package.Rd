@@ -4,7 +4,8 @@
 \alias{package}
 \title{R internal function to build and compile packages}
 \usage{
-package(packageName, method = "compile", version = "minor")
+package(packageName, method = "compile", version = "minor",
+  pkgDir = "C:/Users/157216/source/r-pkg")
 }
 \arguments{
 \item{packageName}{Name of the package}

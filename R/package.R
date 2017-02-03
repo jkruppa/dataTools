@@ -24,12 +24,15 @@
 ##' ## [optional] add data to packages
 ##'
 ##' devtools::use_data(par, pkg = "dataTools", overwrite = TRUE)
-package <- function(packageName, method = "compile", version = "minor"){
+package <- function(packageName,
+                    method = "compile",
+                    version = "minor",
+                    pkgDir = "C:/Users/157216/source/r-pkg")
+{
   require(devtools)
   require(methods)
   require(roxygen2)
   require(utils)
-  pkgDir <- "C:/Users/157216/source/r-pkg"
   pkg_storage_dir <- file.path(pkgDir, paste0("_archive"))
   if(!file.exists(pkg_storage_dir)) dir.create(pkg_storage_dir)
   switch(method,
