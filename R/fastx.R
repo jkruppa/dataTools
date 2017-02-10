@@ -61,49 +61,42 @@ fastq_quality_filter <- function(inFile, outFile, q = 20, p = 50){
 ##' @return NULL
 ##' @author Jochen Kruppa
 ##' @export
-fastq_trimmer <- function(inFile, outFile,
-                          leading = 10,
-                          trailing = 10,
-                          minlength = 50,
-                          illuminaclip = "TruSeq3"
-                          ){
-  if(length(inFile) == 2){
-    ## check if both in and out files are named
-    is.named(inFile)
-    is.named(outFile)
-    paired_outFile <- gsub("fastq|fq", "paired.fq", outFile)
-    unpaired_outFile <- gsub("fastq|fq", "unpaired.fq", outFile)    
-    fastq_trimmer_CMD <- paste("java -jar", trimmomatic,
-                               "PE",
-                               "-threads", par$nCores,
-                               "-phred33",
-                               inFile["R1"],
-                               inFile["R2"],
-                               paired_outFile["R1"],
-                               unpaired_outFile["R1"],
-                               paired_outFile["R2"],
-                               unpaired_outFile["R2"],
-                               str_c("ILLUMINACLIP:",
-                                     illuminaclip, "-PE.fa:2:30:10"),
-                               str_c("LEADING:", leading),
-                               str_c("TRAILING:", trailing),
-                               str_c("MINLEN:", minlength),
-                               "SLIDINGWINDOW:4:15")
-  } else{
-    fastq_trimmer_CMD <- paste("java -jar", trimmomatic,
-                               "SE",
-                               "-threads", par$nCores,
-                               "-phred33",
-                               inFile,
-                               outFile,
-                               str_c("ILLUMINACLIP:",
-                                     illuminaclip, "-PE.fa:2:30:10"),
-                               str_c("LEADING:", leading),
-                               str_c("TRAILING:", trailing),
-                               str_c("MINLEN:", minlength),
-                               "SLIDINGWINDOW:4:15")
-  }
-  runCMD(fastq_trimmer_CMD)
+fastq_trimmer <- function (inFile, outFile, leading = 10, trailing = 10, minlength = 50, 
+                               illuminaclip = "TruSeq3") 
+    {
+      if(length(inFile) == 2) {
+        paired_outFile <- gsub("fastq|fq*", "paired.fq", outFile)
+        unpaired_outFile <- gsub("fastq|fq*", "unpaired.fq", outFile)
+        fastq_trimmer_CMD <- paste("java -jar", trimmomatic, 
+                                   "PE",
+                                   "-threads", par$nCores,
+                                   "-phred33",
+                                   inFile["R1"], 
+                                   inFile["R2"],
+                                   paired_outFile["R1"],
+                                   unpaired_outFile["R1"], 
+                                   paired_outFile["R2"],
+                                   unpaired_outFile["R2"],
+                                   str_c("ILLUMINACLIP:", illuminaclip, "-PE.fa:2:30:10"),
+                                   str_c("LEADING:", leading),
+                                   str_c("TRAILING:", trailing),
+                                   str_c("MINLEN:", minlength),
+                                   "SLIDINGWINDOW:4:15")
+    }
+    else {
+      fastq_trimmer_CMD <- paste("java -jar", trimmomatic, 
+                                 "SE",
+                                 "-threads", par$nCores,
+                                 "-phred33",
+                                 inFile,
+                                 outFile,
+                                 str_c("ILLUMINACLIP:", illuminaclip, "-PE.fa:2:30:10"), 
+                                 str_c("LEADING:", leading),
+                                 str_c("TRAILING:", trailing), 
+                                 str_c("MINLEN:", minlength),
+                                 "SLIDINGWINDOW:4:15")
+    }
+    runCMD(fastq_trimmer_CMD)
 }
 
 ##' Main fastq quality function
@@ -127,35 +120,40 @@ fastq_trimmer <- function(inFile, outFile,
 ##' @return NULL
 ##' @author Jochen Kruppa
 ##' @export
-fastq_quality_control <- function(inFile,
-                                  outFile,
-                                  tmpDir,
-                                  p = 20,
-                                  q = 50,
-                                  leading = 10,
-                                  trailing = 10,
-                                  minlength = 50,
-                                  illumninaclip = "TruSeq3"){
-  talk("Write all temporal files to /home/temp")
-  tmpTrimFq <- file.path(tmpDir,
-                         gsub("fastq|fq", "trimmed.fq", basename(inFile)))
-  if(length(inFile) == 2){
-    names(tmpTrimFq) <- names(inFile)
-  } 
-  talk("Start trimming")
-  fastq_trimmer(inFile, tmpTrimFq,
-                leading, trailing,
-                minlength, illumninaclip)
-  talk("Start quality clipping and read removing")
-  if(length(inFile) == 2){
-    pairedTrimFq <- gsub("fq", "paired.fq", tmpTrimFq)
-    l_ply(seq_along(pairedTrimFq), function(i){
-      fastq_quality_filter(inFile = pairedTrimFq[i],
-                           outFile = outFile[i], q = q, p = p)   
-    }, .parallel = TRUE)
-  } else {
-    fastq_quality_filter(inFile = tmpTrimFq, outFile = outFile, q = q, p = p)   
+fastq_quality_control <- function (inFile, tmpDir, p = 20, q = 50, leading = 10, 
+                                   trailing = 10, minlength = 50, illumninaclip = "TruSeq3") 
+  {
+    talk("Write all temporal files to /home/temp")
+    tmp_in_file <- unlist(inFile)
+    names(tmp_in_file) <- gsub(".*\\.", "", names(tmp_in_file))
+    if(length(tmp_in_file) == 2){
+      tmpTrimFq <- file.path(tmpDir, gsub("fastq|fq.*", "trimmed.fq", basename(tmp_in_file)))
+      names(tmpTrimFq) <- names(tmp_in_file)
+      talk("Start trimming")
+      fastq_trimmer(inFile = tmp_in_file, outFile = tmpTrimFq, leading, trailing, minlength, 
+                    illumninaclip)
+    } else {
+      ## this is redundant I know, but single reads are not fully tested yet
+      tmpTrimFq <- file.path(tmpDir, gsub("fastq|fq.*", "trimmed.fq", basename(tmp_in_file)))
+      names(tmpTrimFq) <- names(tmp_in_file)
+      talk("Start trimming")
+      fastq_trimmer(inFile = tmp_in_file, outFile = tmpTrimFq, leading, trailing, minlength, 
+                    illumninaclip)     
+    }
+    talk("Start quality clipping and read removing")
+    if(length(tmp_in_file) == 2) {
+      pairedTrimFq <- gsub("fq", "paired.fq", tmpTrimFq)
+      qc_out <- gsub(".trimmed.fq.gz", "_trimmed_qc.fq", tmpTrimFq)
+      l_ply(seq_along(pairedTrimFq), function(i) {
+        runCMD(paste("gunzip", pairedTrimFq[i]))
+        fastq_quality_filter(inFile = gsub(".gz$", "", pairedTrimFq[i]),
+                             outFile = qc_out[i], 
+                             q = q, p = p)
+      }, .parallel = TRUE)
+    } else {
+      fastq_quality_filter(inFile = tmpTrimFq, outFile = outFile, 
+                           q = q, p = p)
+    }
+    talk("Cleaning up and finished")
+    unlink(list.files(tmpDir, pattern = "\\.trimmed\\.", full.names = TRUE))
   }
-  unlink(list.files(tmpDir, pattern = "trimmed", full.names = TRUE))
-  talk("Cleaning up and finished")
-}

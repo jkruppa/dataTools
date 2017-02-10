@@ -4,14 +4,11 @@
 \alias{fastq_quality_control}
 \title{Main fastq quality function}
 \usage{
-fastq_quality_control(inFile, outFile, tmpDir, p = 20, q = 50,
-  leading = 10, trailing = 10, minlength = 50,
-  illumninaclip = "TruSeq3")
+fastq_quality_control(inFile, tmpDir, p = 20, q = 50, leading = 10,
+  trailing = 10, minlength = 50, illumninaclip = "TruSeq3")
 }
 \arguments{
 \item{inFile}{Fastq infile}
-
-\item{outFile}{Fastq outfile}
 
 \item{tmpDir}{Where to store the temporal files. Files will be
 removed automatically}
@@ -30,6 +27,8 @@ removed automatically}
 
 \item{illumninaclip}{Remove the adapter from illumina by TruSeq2
 or TruSeq3 protocol}
+
+\item{outFile}{Fastq outfile}
 }
 \description{
 Main fastq quality function
