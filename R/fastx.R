@@ -90,7 +90,7 @@ fastq_trimmer <- function (inFile, outFile, leading = 10, trailing = 10, minleng
                                  "-phred33",
                                  inFile,
                                  outFile,
-                                 str_c("ILLUMINACLIP:", illuminaclip, "-PE.fa:2:30:10"), 
+                                 str_c("ILLUMINACLIP:", illuminaclip, "-SE.fa:2:30:10"), 
                                  str_c("LEADING:", leading),
                                  str_c("TRAILING:", trailing), 
                                  str_c("MINLEN:", minlength),
