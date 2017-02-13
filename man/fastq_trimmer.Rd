@@ -5,7 +5,7 @@
 \title{Trimmomatic wrapper}
 \usage{
 fastq_trimmer(inFile, outFile, leading = 10, trailing = 10,
-  minlength = 50, illuminaclip = "TruSeq3")
+  minlength = 50, illuminaclip, log_file)
 }
 \arguments{
 \item{inFile}{Fastq infile}
