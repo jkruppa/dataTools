@@ -4,7 +4,7 @@
 \alias{runCMD}
 \title{Lazy wrapper for system}
 \usage{
-runCMD(cmd)
+runCMD(cmd, intern = FALSE)
 }
 \arguments{
 \item{cmd}{pasted command to run}

@@ -80,6 +80,6 @@ is.named <- function(file){
 ##' @return NULL
 ##' @author Jochen Kruppa
 ##' @export
-runCMD <- function(cmd) {
-    try(system(cmd, wait = TRUE))
+runCMD <- function(cmd, intern = FALSE) {
+    try(system(cmd, wait = TRUE, intern = intern))
 }
