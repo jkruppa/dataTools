@@ -40,4 +40,3 @@ fastq_quality_filter and fastq_trimmer. Stores files in a tempDir.
 \author{
 Jochen Kruppa
 }
-

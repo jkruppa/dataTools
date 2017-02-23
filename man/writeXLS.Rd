@@ -12,4 +12,3 @@ writeXLS(list, file, oneFile = TRUE)
 \description{
 This is a link to a older function
 }
-

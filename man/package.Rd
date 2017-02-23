@@ -40,4 +40,3 @@ devtools::use_data(par, pkg = "dataTools", overwrite = TRUE)
 \author{
 Jochen Kruppa
 }
-

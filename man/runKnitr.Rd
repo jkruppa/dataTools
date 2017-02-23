@@ -22,4 +22,3 @@ Compiler for RNW and TEX files in subdirs
 \author{
 Jochen Kruppa
 }
-

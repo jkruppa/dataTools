@@ -27,4 +27,3 @@ chunks(d, size = 10)
 \author{
 Jochen Kruppa
 }
-

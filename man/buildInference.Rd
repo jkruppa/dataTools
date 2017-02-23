@@ -21,4 +21,3 @@ This function builds the inference table for beta, upper, and lower
 \author{
 Jochen Kruppa
 }
-

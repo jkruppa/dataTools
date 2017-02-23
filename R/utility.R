@@ -69,7 +69,7 @@ dir0 <- function(...) dir(..., full.names = TRUE, recursive = TRUE)
 ##' @author Jochen Kruppa
 ##' @export
 is.named <- function(file){
-    if(is.null(names(x))) {stop("Named 'x' is needed")}
+    if(is.null(names(file))) {stop("Named 'file' is needed")}
 }
 
 ##' Lazy wrapper for system

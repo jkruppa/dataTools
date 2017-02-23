@@ -2,6 +2,7 @@
 % Please edit documentation in R/dataHandling.r, R/utility.R
 \name{gli}
 \alias{gli}
+\alias{gli}
 \title{Small wrapper for glimpse()}
 \usage{
 gli(...)
@@ -31,4 +32,3 @@ Jochen Kruppa
 
 Jochen Kruppa
 }
-

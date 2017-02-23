@@ -21,4 +21,3 @@ Wrapper for hours minutes
 \author{
 Jochen Kruppa
 }
-

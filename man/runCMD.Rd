@@ -18,4 +18,3 @@ Lazy wrapper for system
 \author{
 Jochen Kruppa
 }
-

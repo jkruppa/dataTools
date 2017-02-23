@@ -18,4 +18,3 @@ Small wrapper for write.table with the options col.names = FALSE, row.names = FA
 \author{
 Jochen Kruppa
 }
-

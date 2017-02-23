@@ -21,4 +21,3 @@ Check for named vector
 \author{
 Jochen Kruppa
 }
-

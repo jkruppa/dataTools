@@ -18,4 +18,3 @@ init project function
 \author{
 Jochen Kruppa
 }
-

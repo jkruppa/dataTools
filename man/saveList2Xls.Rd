@@ -22,4 +22,3 @@ A wrapper how saves a list to a xls file
 \author{
 Jochen Kruppa
 }
-

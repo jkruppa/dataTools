@@ -23,4 +23,3 @@ Paste factores
 \author{
 Jochen Kruppa
 }
-

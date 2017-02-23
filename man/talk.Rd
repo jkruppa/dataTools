@@ -21,4 +21,3 @@ Message function with time
 \author{
 Jochen Kruppa
 }
-

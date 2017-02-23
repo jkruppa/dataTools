@@ -22,4 +22,3 @@ Caution this is a wrapper...
 \author{
 Jochen Kruppa
 }
-

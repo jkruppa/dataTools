@@ -22,4 +22,3 @@ is used in some older projects and can not be dismissed
 \author{
 Jochen Kruppa
 }
-

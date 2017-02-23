@@ -21,4 +21,3 @@ A p value rounder
 \author{
 Jochen Kruppa
 }
-

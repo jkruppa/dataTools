@@ -21,4 +21,3 @@ Time function
 \author{
 Jochen Kruppa
 }
-

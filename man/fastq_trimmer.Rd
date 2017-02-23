@@ -34,4 +34,3 @@ case.
 \author{
 Jochen Kruppa
 }
-

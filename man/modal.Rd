@@ -21,4 +21,3 @@ Get the modal value of vector
 \author{
 Jochen Kruppa
 }
-

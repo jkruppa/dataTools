@@ -24,4 +24,3 @@ Function to quality filter fastq files
 \author{
 Jochen Kruppa
 }
-

@@ -21,4 +21,3 @@ Get a object back, which was saved as a RDS
 \author{
 Jochen Kruppa
 }
-

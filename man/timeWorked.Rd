@@ -24,4 +24,3 @@ data.frame
 \author{
 Jochen Kruppa
 }
-

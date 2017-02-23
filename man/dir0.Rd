@@ -21,4 +21,3 @@ Lazy alias for dir() function
 \author{
 Jochen Kruppa
 }
-

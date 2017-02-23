@@ -20,4 +20,3 @@ Finds sam files and convert to bam
 \author{
 Jochen Kruppa
 }
-
