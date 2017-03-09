@@ -65,8 +65,8 @@ fastq_trimmer <- function (inFile, outFile, leading = 10, trailing = 10, minleng
                            illuminaclip, log_file) 
     {
       if(length(inFile) == 2) {
-        paired_outFile <- gsub("fastq|fq*", "paired.fq", outFile)
-        unpaired_outFile <- gsub("fastq|fq*", "unpaired.fq", outFile)
+        paired_outFile <- gsub("fastq|fq*$", "paired.fq", outFile)
+        unpaired_outFile <- gsub("fastq|fq*$", "unpaired.fq", outFile)
         fastq_trimmer_CMD <- paste("java -jar", trimmomatic, 
             "PE", "-threads", par$nCores, "-phred33", inFile["R1"], 
             inFile["R2"], paired_outFile["R1"], unpaired_outFile["R1"], 
