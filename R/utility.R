@@ -1,3 +1,16 @@
+##' Small function to return list to DNAStringSet
+##'
+##' Small function to return list to DNAStringSet
+##' @title Small function to return list to DNAStringSet 
+##' @param list 
+##' @return DNAStringSet
+##' @author Jochen Kruppa
+##' @export
+list2Biostring <- function(list){
+  return(DNAStringSet(Reduce(c, list)))
+}
+
+
 ##' Alias for glimpse
 ##'
 ##' Alias for glimpse

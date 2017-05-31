@@ -73,7 +73,7 @@ package <- function(packageName,
            ## go on with package building
            document(packageDir)
            build(packageDir)
-           install(packageDir, local = FALSE)
+           install(packageDir, local = TRUE)
            ## copy package into storage
            message("Move gz files to folder '_archive'")
            pkg_gz_files <- list.files(pkgDir, pattern = paste0(packageName, "_"),

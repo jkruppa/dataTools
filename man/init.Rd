@@ -4,10 +4,12 @@
 \alias{init}
 \title{init project function}
 \usage{
-init(...)
+init(..., init_path = NULL)
 }
 \arguments{
 \item{...}{}
+
+\item{init_path}{give the path to the init file}
 }
 \description{
 init project function

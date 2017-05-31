@@ -3,10 +3,11 @@
 ##' init project function
 ##' @title init project function
 ##' @param ... 
+##' @param init_path give the path to the init file 
 ##' @return NULL
 ##' @author Jochen Kruppa
 ##' @export
-init <- function(...) {
+init <- function(..., init_path = NULL) {
   require(pacman)
   par$packages <- switch(Sys.info()['sysname'],
                          "Windows" = {
@@ -23,8 +24,15 @@ init <- function(...) {
   talk("Register ", par$nCores, " CPU cores. Change with 'registerDoMC()'")  
   if(Sys.info()['sysname'] != "Windows")
     registerDoMC(par$nCores)
-  if(file.exists("init.R")){
-    talk("Source file paths from 'init.R'")
-    source("init.R")
+  if(is.null(init_path)){
+    if(file.exists("init.R")){
+      talk("Source file paths from 'init.R'")
+      source("init.R")
+    }
+  } else {
+    if(file.exists(init_path)){
+      talk("Source file paths from ", init_path)
+      source(init_path)
+    }
   }
 }
