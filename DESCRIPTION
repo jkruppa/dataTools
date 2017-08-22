@@ -1,6 +1,6 @@
 Package: dataTools
 Title: A collection of hepful data wrapper
-Version: 1.0.5.19
+Version: 1.0.5.20
 Authors@R: "Jochen Kruppa <jochen.kruppa@gmail.com> [aut,cre]"
 Description: Better functions for writing and getting objects and other data suff. Loads all my desired packages. Used for my daily workflow. This package contains functions, which make less sense without knowing my default project structure. Please feel free to ask me, if you are interested in my structures. Not all imported packages are needed here, but still be useful.
 Depends:
