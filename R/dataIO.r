@@ -91,3 +91,10 @@ saveList2Xls <- function(list, file, oneFile = TRUE){
 #' @export
 writeXLS <- saveList2Xls
 
+#' This is a link to a older function
+#'
+#' @param link to saveList2Xls
+#' @export
+write_xlsx <- saveList2Xls
+
+
