@@ -1,3 +1,16 @@
+##' Small wrapper for dir.create
+##'
+##' Small wrapper for dir.create
+##' @title Small wrapper for dir.create 
+##' @param dir_path 
+##' @return NULL
+##' @author Jochen Kruppa
+##' @export
+mk_dir <- function(dir_path){
+  if(!file.exists(dir_path)) dir.create(dir_path, recursive = TRUE)
+}
+
+
 ##' Small function to return list to DNAStringSet
 ##'
 ##' Small function to return list to DNAStringSet
