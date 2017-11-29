@@ -83,18 +83,7 @@ timeWorked <- function(from = NULL, lunchStart = NULL, lunchEnd = NULL, end = NU
 time_worked <- function(start, lunch_start, lunch_end, end, workaccount){
   require(lubridate)
   require(magrittr)
-  ## small wrapper to get the seconds
-  to_sec <- function(x) {as.numeric(hm(x))}
-  sec_to_hhmm <- function(x) {
-    if(x > 0){
-      t_x <- seconds_to_period(x) 
-      return(sprintf('%02d:%02d', t_x@day * 24 + t_x@hour, minute(t_x)))
-    } else {
-      t_x <- seconds_to_period(abs(x)) 
-      time <- sprintf('%02d:%02d', t_x@day * 24 + t_x@hour, minute(t_x))
-      return(paste0("-", time))
-    }
-  }
+  ## small wrapper to get the second
   ## get the times
   should <- "07:58"
   worked <- to_sec(end) - (to_sec(lunch_end) - to_sec(lunch_start)) - to_sec(start)
@@ -112,3 +101,26 @@ time_worked <- function(start, lunch_start, lunch_end, end, workaccount){
   cat(paste("Old workaccount    ", sec_to_hhmm(to_sec(workaccount)), "\n"))
   cat(paste("New workaccount    ", sec_to_hhmm(workaccount_new), "\n"))
 }
+
+##' @title Small wrapper to get seconds
+##' @param x 
+##' @return vector
+##' @author Jochen Kruppa
+##' @export
+to_sec <- function(x) {as.numeric(hm(x))}
+
+##' @title Small wrapper to get hh:mm from seconds
+##' @param x 
+##' @return string hh:mm
+##' @author Jochen Kruppa
+##' @export
+sec_to_hhmm <- function(x) {
+    if(x > 0){
+      t_x <- seconds_to_period(x) 
+      return(sprintf('%02d:%02d', t_x@day * 24 + t_x@hour, minute(t_x)))
+    } else {
+      t_x <- seconds_to_period(abs(x)) 
+      time <- sprintf('%02d:%02d', t_x@day * 24 + t_x@hour, minute(t_x))
+      return(paste0("-", time))
+    }
+  }
