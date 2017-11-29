@@ -70,3 +70,44 @@ timeWorked <- function(from = NULL, lunchStart = NULL, lunchEnd = NULL, end = NU
         return(returnDf)
     }
 }
+
+##' @title Small function to calculate the working time (improved)
+##' @param from 
+##' @param lunchStart 
+##' @param lunchEnd 
+##' @param end 
+##' @param workaccount 
+##' @return data.frame
+##' @author Jochen Kruppa
+##' @export
+time_worked <- function(start, lunch_start, lunch_end, end, workaccount){
+  require(lubridate)
+  require(magrittr)
+  ## small wrapper to get the seconds
+  to_sec <- function(x) {as.numeric(hm(x))}
+  sec_to_hhmm <- function(x) {
+    if(x > 0){
+      t_x <- seconds_to_period(x) 
+      return(sprintf('%02d:%02d', t_x@day * 24 + t_x@hour, minute(t_x)))
+    } else {
+      t_x <- seconds_to_period(abs(x)) 
+      time <- sprintf('%02d:%02d', t_x@day * 24 + t_x@hour, minute(t_x))
+      return(paste0("-", time))
+    }
+  }
+  ## get the times
+  worked <- to_sec(end) - (to_sec(lunch_end) - to_sec(lunch_start)) - to_sec(start)
+  is <- worked - to_sec(should) 
+  ending <- to_sec(start) + (to_sec(lunch_end) - to_sec(lunch_start)) + to_sec(should)
+  workaccount_new <- to_sec(workaccount) + is
+  ## print everything
+  cat(paste("Start working       ", start, "\n"))
+  cat(paste("End working        ", end, "\n"))
+  cat(paste("Should end working ", sec_to_hhmm(ending), "\n"))
+  cat(c("-------------------------\n"))
+  cat(paste("Time worked        ", sec_to_hhmm(worked), "\n"))
+  cat(paste("Daily balance      ", sec_to_hhmm(is), "\n"))
+  cat(c("-------------------------\n"))
+  cat(paste("Old workaccount    ", sec_to_hhmm(to_sec(workaccount)), "\n"))
+  cat(paste("New workaccount    ", sec_to_hhmm(workaccount_new), "\n"))
+}
