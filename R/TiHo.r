@@ -96,6 +96,7 @@ time_worked <- function(start, lunch_start, lunch_end, end, workaccount){
     }
   }
   ## get the times
+  should <- "07:58"
   worked <- to_sec(end) - (to_sec(lunch_end) - to_sec(lunch_start)) - to_sec(start)
   is <- worked - to_sec(should) 
   ending <- to_sec(start) + (to_sec(lunch_end) - to_sec(lunch_start)) + to_sec(should)
